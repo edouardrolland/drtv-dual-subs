@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "DR TV Dual Subtitles (Danish + English)",
+  "version": "1.0.0",
+  "description": "Shows Danish subtitles together with an English translation on DR TV, for Danish learners.",
+  "permissions": ["storage", "unlimitedStorage"],
+  "host_permissions": [
+    "https://*.dr.dk/*",
+    "https://*.akamaized.net/*",
+    "https://*.dr-massive.com/*",
+    "https://translate.googleapis.com/*",
+    "https://api-free.deepl.com/*",
+    "https://api.deepl.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.dr.dk/*"],
+      "js": ["inject.js"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://*.dr.dk/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "DR TV Dual Subtitles",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}

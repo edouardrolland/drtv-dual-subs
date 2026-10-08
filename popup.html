@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { width: 300px; margin: 0; padding: 14px; font: 13px system-ui, sans-serif; color: #1d1d1f; background: #fafafa; }
+    h1 { font-size: 15px; margin: 0 0 10px; }
+    h1 span { color: #c8102e; }
+    fieldset { border: 1px solid #ddd; border-radius: 8px; margin: 0 0 10px; padding: 8px 10px; background: #fff; }
+    legend { font-weight: 600; padding: 0 4px; }
+    label { display: flex; align-items: center; gap: 6px; margin: 5px 0; }
+    label.col { flex-direction: column; align-items: stretch; gap: 2px; }
+    input[type=range] { width: 100%; }
+    input[type=text], input[type=password], select { width: 100%; box-sizing: border-box; padding: 4px; }
+    .status { font-size: 12px; color: #555; margin-bottom: 10px; }
+    .status .err { color: #b00020; }
+    .hint { font-size: 11px; color: #777; }
+    .row { display: flex; gap: 8px; }
+    .row > * { flex: 1; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <h1><span>DR TV</span> Dual Subtitles</h1>
+  <div class="status" id="status">Looking for a video…</div>
+
+  <fieldset>
+    <legend>Display</legend>
+    <label><input type="checkbox" id="enabled"> Enabled</label>
+    <label><input type="checkbox" id="showDanish"> Show Danish <span class="hint">(Alt+D)</span></label>
+    <label><input type="checkbox" id="showEnglish"> Show translation <span class="hint">(Alt+E)</span></label>
+    <label><input type="checkbox" id="englishFirst"> Translation above Danish</label>
+    <label><input type="checkbox" id="hideNative"> Hide DR's own subtitles</label>
+    <label class="col">Text size: <span id="fontSizeVal"></span>
+      <input type="range" id="fontSize" min="50" max="200" step="5"></label>
+    <label class="col">Distance from bottom: <span id="bottomVal"></span>
+      <input type="range" id="bottom" min="0" max="60" step="1"></label>
+    <label class="col">Timing offset (s): <span id="offsetVal"></span> <span class="hint">(Alt+, / Alt+.)</span>
+      <input type="range" id="offset" min="-10" max="10" step="0.25"></label>
+  </fieldset>
+
+  <fieldset>
+    <legend>Subtitle track</legend>
+    <select id="source"><option value="auto">Auto (most complete)</option></select>
+  </fieldset>
+
+  <fieldset>
+    <legend>Translation</legend>
+    <div class="row">
+      <label class="col">Engine
+        <select id="engine">
+          <option value="google">Google (free)</option>
+          <option value="deepl">DeepL (API key)</option>
+        </select></label>
+      <label class="col">Language
+        <select id="target">
+          <option value="en">English</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+          <option value="es">Spanish</option>
+          <option value="it">Italian</option>
+          <option value="nl">Dutch</option>
+          <option value="pl">Polish</option>
+          <option value="uk">Ukrainian</option>
+        </select></label>
+    </div>
+    <label class="col" id="deeplRow">DeepL API key
+      <input type="password" id="deeplKey" placeholder="xxxxxxxx-…:fx"></label>
+  </fieldset>
+
+  <script src="popup.js"></script>
+</body>
+</html>
